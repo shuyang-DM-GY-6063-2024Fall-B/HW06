@@ -21,6 +21,7 @@ function setup() {
       if (type === types[idx]) {
         color = [colors[idx][0], colors[idx][1], colors[idx][2], transparent];
         x = map(idx, 0, types.length - 1, 100, windowWidth - 100);
+        fill(color)
         text(types[idx], x - 20, windowHeight - 20);
       }
     }
@@ -29,7 +30,7 @@ function setup() {
     let change = random(-(windowWidth - 200) / 12, (windowWidth - 200) / 12);
     let r = map(number, 0, 88, 10, 100);
 
-    circleData.push({ x: x + change, y: y, r: r, SciName: data.get(i, 'SciName'), color: color });
+    circleData.push({ x: x + change, y: y, r: r, SciName: data.get(i, 'SciName'), color: color,xT:x-30,type:type });
   }
 }
 
@@ -39,6 +40,7 @@ function draw() {
   for (let circle of circleData) {
     fill(circle.color[0], circle.color[1], circle.color[2], circle.color[3]);
     ellipse(circle.x, circle.y, circle.r);
+    text(circle.type,circle.xT,windowHeight-30)
 
     if (dist(circle.x, circle.y, mouseX, mouseY) < circle.r) {
       fill('white');
